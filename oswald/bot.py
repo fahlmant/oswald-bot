@@ -2,7 +2,7 @@ import socket
 import os
 
 server = 'irc.freenode.net'
-channel = '#fahlmant'
+channel = '##gamedevelopment'
 botnick = 'oswald'
 word = os.environ["OSWALD"]
 
