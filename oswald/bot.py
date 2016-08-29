@@ -1,10 +1,15 @@
 import socket
 import os
+import time
 
 server = 'irc.freenode.net'
 channel = '##gamedevelopment'
 botnick = 'oswald'
 word = os.environ["OSWALD"]
+if os.environ.get("TRAVIS"):
+    travis = os.environ["TRAVIS"]
+
+
 
 def ping():
     ircsock.send("PONG :pong\n")
@@ -34,6 +39,7 @@ ircsock.send("USER " + botnick + " " + botnick + " " + botnick + "My Bot\n ")
 ircsock.send("NICK "+ botnick + "\n")
 ircsock.send("NICKSERV IDENTIFY " + word + "\n" )
 joinchan(channel)
+time.sleep(100)
 
 while 1:
     ircmesg = ircsock.recv(2048)
@@ -51,4 +57,5 @@ while 1:
         exit()
     if ircmesg.find("PING :") != -1:
         ping()
-
+    if travis :
+        quitIRC()
